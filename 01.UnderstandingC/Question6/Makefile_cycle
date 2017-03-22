@@ -5,7 +5,7 @@ LDFLAGS = -lrt
 DEBUG = yes
 
 PROG = test6_cycle
-OBJS = test6_cycle.o
+OBJS = test6_cycle.o funcA.o funcB.o funcC.o
 
 ifeq ($(DEBUG),yes)
 	CFLAGS += -Wall -g

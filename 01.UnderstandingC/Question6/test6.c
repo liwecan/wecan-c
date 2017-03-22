@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <time.h>
+#include "func.h"
 
 #define TRY_NUM 1000000
 
@@ -15,21 +16,6 @@ static double diff_in_second(struct timespec t1, struct timespec t2)
     }
 
     return (diff.tv_sec + diff.tv_nsec / 1000000000.0);
-}
-
-int funcA(int a, int b, int c)
-{
-    return a+b+c;
-}
-
-int funcB(int a, int b, int c, int d)
-{
-    return a+b+c+d;
-}
-
-int funcC(int a, int b, int c, int d, int e)
-{
-    return a+b+c+d+e;
 }
 
 int main(void)

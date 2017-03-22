@@ -5,8 +5,9 @@
 #include <inttypes.h>
 #include <limits.h>
 #include <stdint.h>
+#include "func.h"
 
-#define TRY_NUM 10000
+#define TRY_NUM 1
 
 static inline __attribute__((always_inline))
 void get_cycles(unsigned *high, unsigned *low)
@@ -36,21 +37,6 @@ uint64_t diff_in_cycles(unsigned high1, unsigned low1,
     start = (((uint64_t) high1 << 32) | low1);
     end = (((uint64_t) high2 << 32) | low2);
     return end - start;
-}
-
-int funcA(int a, int b, int c)
-{
-    return a+b+c;
-}
-
-int funcB(int a, int b, int c, int d)
-{
-    return a+b+c+d;
-}
-
-int funcC(int a, int b, int c, int d, int e)
-{
-    return a+b+c+d+e;
 }
 
 int main(int argc, char *argv[])
