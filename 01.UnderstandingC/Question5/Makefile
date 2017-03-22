@@ -1,6 +1,6 @@
 CC=gcc
 STRIP =
-CFLAGS = -Wall -g
+CFLAGS = -std=c99 -Wall -g
 OPFLAGS = -O3 -Wall -g
 
 .PHONY: all

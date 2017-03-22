@@ -1,11 +1,11 @@
 CC=gcc
 STRIP =
-CFLAGS = 
+CFLAGS =
 LDFLAGS = -lrt
 DEBUG = yes
 
-PROG = test6
-OBJS = test6.o
+PROG = test6_cycle
+OBJS = test6_cycle.o
 
 ifeq ($(DEBUG),yes)
 	CFLAGS += -Wall -g

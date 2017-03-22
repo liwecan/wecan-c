@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <time.h>
 
+#define TRY_NUM 1000000
+
 static double diff_in_second(struct timespec t1, struct timespec t2)
 {
     struct  timespec diff;
@@ -15,12 +17,17 @@ static double diff_in_second(struct timespec t1, struct timespec t2)
     return (diff.tv_sec + diff.tv_nsec / 1000000000.0);
 }
 
-int funcA(int a, int b, int c, int d)
+int funcA(int a, int b, int c)
+{
+    return a+b+c;
+}
+
+int funcB(int a, int b, int c, int d)
 {
     return a+b+c+d;
 }
 
-int funcB(int a, int b, int c, int d, int e)
+int funcC(int a, int b, int c, int d, int e)
 {
     return a+b+c+d+e;
 }
@@ -28,20 +35,30 @@ int funcB(int a, int b, int c, int d, int e)
 int main(void)
 {
     struct timespec start, end;
-    double cpu_time1, cpu_time2;
+    double cpu_time1, cpu_time2, cpu_time3;
     
     clock_gettime(CLOCK_REALTIME, &start);
-    funcA(1,2,3,4);
+    for(int try=0; try<TRY_NUM; try++)
+        funcA(1,2,3);
     clock_gettime(CLOCK_REALTIME, &end);
     cpu_time1 = diff_in_second(start, end);
     
     clock_gettime(CLOCK_REALTIME, &start);
-    funcB(1,2,3,4,5);
+    for(int try=0; try<TRY_NUM; try++)
+        funcB(1,2,3,4);
     clock_gettime(CLOCK_REALTIME, &end);
     cpu_time2 = diff_in_second(start, end);
 
-    printf("time of funcA() : %lf sec\n", cpu_time1);
-    printf("time of funcB() : %lf sec\n", cpu_time2);
+    clock_gettime(CLOCK_REALTIME, &start);
+    for(int try=0; try<TRY_NUM; try++)
+        funcC(1,2,3,4,5);
+    clock_gettime(CLOCK_REALTIME, &end);
+    cpu_time3 = diff_in_second(start, end);
+
+
+    printf("time of funcA(1,2,3    ) run %d times : %lf sec\n", TRY_NUM, cpu_time1);
+    printf("time of funcB(1,2,3,4  ) run %d times : %lf sec\n", TRY_NUM, cpu_time2);
+    printf("time of funcC(1,2,3,4,5) run %d times : %lf sec\n", TRY_NUM, cpu_time3);
 
     return 0;
 }

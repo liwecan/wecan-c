@@ -1,6 +1,6 @@
 CC=gcc
 STRIP =
-CFLAGS =
+CFLAGS = -std=c99
 DEBUG = yes
 
 PROG = test1
