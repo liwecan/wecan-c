@@ -1,12 +1,10 @@
 CC=gcc
-#CC=arm-hisiv300-linux-gcc
 STRIP =
-CFLAGS = -std=gnu99
-LDFLAGS = -lrt
+CFLAGS = -std=c99
 DEBUG = yes
 
-PROG = test6_cycle
-OBJS = test6_cycle.o funcA.o funcB.o funcC.o
+PROG = user
+OBJS = user.o array.o
 
 ifeq ($(DEBUG),yes)
 	CFLAGS += -Wall -g
@@ -18,7 +16,7 @@ endif
 all: $(PROG)
 
 $(PROG): $(OBJS)
-	$(CC) $(LDFLAGS) -o $(PROG) $(OBJS)
+	$(CC) -o $(PROG) $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<

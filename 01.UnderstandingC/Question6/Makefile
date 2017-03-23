@@ -1,6 +1,7 @@
 CC=gcc
+#CC=arm-hisiv300-linux-gcc
 STRIP =
-CFLAGS = 
+CFLAGS = -std=gnu99 
 LDFLAGS = -lrt
 DEBUG = yes
 
